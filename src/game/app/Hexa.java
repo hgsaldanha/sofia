@@ -8,6 +8,7 @@ package game.app;
 
 import engine.eventos.EventosDoRender;
 import engine.eventos.EventosDoTeclado;
+import game.itens.Hulk;
 
 /**
  *
@@ -15,9 +16,12 @@ import engine.eventos.EventosDoTeclado;
  */
 public class Hexa implements EventosDoTeclado, EventosDoRender {
 
+    public static final int MAX_PLAYERS = 4;
     private static Hexa instance;
+    private Hulk hulk;
 
     public Hexa() {
+        hulk = new Hulk();
     }
     
     public static Hexa getInstance() {
