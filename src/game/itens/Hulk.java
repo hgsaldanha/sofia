@@ -14,6 +14,6 @@ import engine.itens.Item;
  */
 public class Hulk extends Item {
     public Hulk() {
-        super("hulk.gif",300,300);
+        super("hulk.gif",100,100);
     }
 }

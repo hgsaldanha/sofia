@@ -6,9 +6,15 @@
 
 package game.app;
 
+import engine.core.Game;
 import engine.eventos.EventosDoRender;
 import engine.eventos.EventosDoTeclado;
+import engine.renders.WindowRender;
+import game.info.Posicao;
+import game.itens.Goleiro;
 import game.itens.Hulk;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -19,9 +25,23 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
     public static final int MAX_PLAYERS = 4;
     private static Hexa instance;
     private Hulk hulk;
-
+    private Goleiro goleiro;
+    public Collection<Posicao> posicao;
+    
     public Hexa() {
+        Game.ALTURA_TELA = 630;
+        Game.LARGURA_TELA = 618;
+        
+        posicao = new ArrayList<>();
+        posicao.add(new Posicao(100, 100));
+        posicao.add(new Posicao(120, 100));
+        posicao.add(new Posicao(130, 100));
+        posicao.add(new Posicao(140, 100));
+        posicao.add(new Posicao(150, 100));
+        
+        
         hulk = new Hulk();
+        goleiro = new Goleiro();
     }
     
     public static Hexa getInstance() {
@@ -30,44 +50,54 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
         return instance;
     }
     
+    public void iniciar() {
+        hulk.iniciarAnimacao();
+        goleiro.iniciarAnimacao();
+        
+        WindowRender window = new WindowRender(this, this);
+        window.setVisible(true);
+        
+        Game.gameInit();
+    }
+    
     @Override
     public void teclaPress(int keycode) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void teclaDireita() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        goleiro.toRight();
     }
 
     @Override
     public void teclaEsquerda() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        goleiro.toLeft();
     }
 
     @Override
     public void teclaCima() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void teclaBaixo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void teclaEspaco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void antesPintar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void depoisPintar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }
