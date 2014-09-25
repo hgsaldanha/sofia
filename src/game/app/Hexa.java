@@ -9,57 +9,43 @@ package game.app;
 import engine.core.Game;
 import engine.eventos.EventosDoRender;
 import engine.eventos.EventosDoTeclado;
+import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
-import game.info.Posicao;
 import game.itens.Goleiro;
-import game.itens.Hulk;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  *
- * @author alunoruy
+ * @author elane
  */
-public class Hexa implements EventosDoTeclado, EventosDoRender {
-
-    public static final int MAX_PLAYERS = 4;
+public class Hexa implements EventosDoTeclado,EventosDoRender{
     private static Hexa instance;
-    private Hulk hulk;
     private Goleiro goleiro;
-    public Collection<Posicao> posicao;
-    
-    public Hexa() {
-        Game.ALTURA_TELA = 630;
-        Game.LARGURA_TELA = 618;
+    public PosicaoRender mapa;
+   
+   
+    private Hexa()
+    {
+        Game.ALTURA_TELA = 600;
+        Game.LARGURA_TELA = 500;
         
-        posicao = new ArrayList<>();
-        posicao.add(new Posicao(100, 100));
-        posicao.add(new Posicao(120, 100));
-        posicao.add(new Posicao(130, 100));
-        posicao.add(new Posicao(140, 100));
-        posicao.add(new Posicao(150, 100));
-        
-        
-        hulk = new Hulk();
-        goleiro = new Goleiro();
+        mapa = new PosicaoRender(12, 10, 50);
+        goleiro = new Goleiro(mapa);
     }
     
-    public static Hexa getInstance() {
-        if (instance == null)
-            instance = new Hexa();
-        return instance;
-    }
-    
-    public void iniciar() {
-        hulk.iniciarAnimacao();
+     public void iniciar(){
         goleiro.iniciarAnimacao();
-        
         WindowRender window = new WindowRender(this, this);
         window.setVisible(true);
-        
         Game.gameInit();
     }
     
+    public static Hexa getInstance(){
+        if(instance==null){
+            instance = new Hexa();
+        }
+        return instance;
+    }
+       
     @Override
     public void teclaPress(int keycode) {
         
@@ -67,22 +53,22 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
 
     @Override
     public void teclaDireita() {
-        goleiro.toRight();
+        goleiro.direita();
     }
 
     @Override
     public void teclaEsquerda() {
-        goleiro.toLeft();
+        goleiro.esquerda();
     }
 
     @Override
     public void teclaCima() {
-        
+        goleiro.cima();
     }
 
     @Override
     public void teclaBaixo() {
-        
+        goleiro.baixo();
     }
 
     @Override
