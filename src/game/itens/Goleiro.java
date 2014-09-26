@@ -6,6 +6,7 @@
 
 package game.itens;
 
+import engine.core.GameController;
 import engine.itens.Item;
 import engine.itens.PosicaoRender;
 
@@ -19,16 +20,39 @@ public class Goleiro extends Item{
     public static String IMAGEM_GOLEIRO_DIREITA ="IMAGEM_GOLEIRO_DIREITA";
     public static String IMAGEM_GOLEIRO_ESQUERDA ="IMAGEM_GOLEIRO_ESQUERDAf";
     public static String IMAGEM_GOLEIRO_PARADO ="IMAGEM_GOLEIRO_PARADO";
+    public static String IMAGEM_COMEMORACAO ="IMAGEM_COMEMORACAO";
+    private double qtdeBolas;
+
     
     public Goleiro(PosicaoRender positions) {
        super("goleiro.gif", positions, 218);
        this.addImagem(IMAGEM_GOLEIRO_DIREITA, "goleiro.gif");
        this.addImagem(IMAGEM_GOLEIRO_ESQUERDA, "goleiro.gif");
-       this.addImagem(IMAGEM_GOLEIRO_PARADO, "hulk.gif");
+       this.addImagem(IMAGEM_GOLEIRO_PARADO, "parado.gif");
+       this.addImagem(IMAGEM_COMEMORACAO, "comemoracao.gif");
+       
     }
    
     public Goleiro(String imagem, PosicaoRender positions) {
-        super(imagem, positions, 4);
+        super(imagem, positions,106);
+    }
+    
+    @Override
+   public void animar()
+   {
+        
+   }
+     
+    public void addBolas(int p){
+        qtdeBolas+=p;
+    }
+    
+    public double getBolas(){
+        return qtdeBolas;
+    }
+    
+    public void diminuirPontos(int p){
+        qtdeBolas-=p;
     }
     
     public void direita(){
@@ -50,4 +74,5 @@ public class Goleiro extends Item{
         this.changeImagem(IMAGEM_GOLEIRO_PARADO);
         downInMapa(1);
     }
+
 }
