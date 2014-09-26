@@ -21,7 +21,7 @@ public class Goleiro extends Item{
     public static String IMAGEM_GOLEIRO_PARADO ="IMAGEM_GOLEIRO_PARADO";
     
     public Goleiro(PosicaoRender positions) {
-        super("goleiro.gif", positions, 5);
+       super("goleiro.gif", positions, 280);
        this.addImagem(IMAGEM_GOLEIRO_DIREITA, "goleiro.gif");
        this.addImagem(IMAGEM_GOLEIRO_ESQUERDA, "goleiro.gif");
        this.addImagem(IMAGEM_GOLEIRO_PARADO, "hulk.gif");
