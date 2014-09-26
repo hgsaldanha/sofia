@@ -32,7 +32,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     public Collection<Posicao> posicao;
     public PosicaoRender mapa;
     private Jogadores jogadores;
-    private Bola bola;
+    //private Bola bola;
     
     public Hexa() {
         

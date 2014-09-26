@@ -6,7 +6,6 @@
 
 package game.itens;
 
-import engine.core.GameController;
 import engine.itens.Item;
 import engine.itens.PosicaoRender;
 
@@ -25,7 +24,7 @@ public class Bola extends Item {
     @Override
     public void animar() {
         while(posicao_atual < 226){ //Enquanto o jogo não chegou ao fim
-            System.out.println(posicao_atual);
+            //System.out.println(posicao_atual);
         }
         setVisible(false);
             
@@ -43,20 +42,5 @@ public class Bola extends Item {
         }*/
         
     }
-    
-   @Override
-   public void animar(){
-       this.deslocarReta(105, 1);
-        if(GameController.getInstance().colisaoItem(Goleiro.class, this)){
-            Item item = GameController.getInstance().getColisaoItem(Goleiro.class, this);
-            this.setVisible(true);
-            contarDefesas++;
-           
-              //A medida que o usuário realiza defesas, a velocidade da bola aumenta
-        }
-        else
-        {
-            
-        }
-   }
+   
 }
