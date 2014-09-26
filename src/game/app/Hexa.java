@@ -40,7 +40,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
         jogadores = new Jogadores(mapa);
         
         //hulk = new Hulk(mapa,25);
-        //goleiro = new Goleiro(mapa,26);
+        goleiro = new Goleiro(mapa);
     }
     
     public static Hexa getInstance() {
@@ -51,7 +51,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     
     public void iniciar() {
         //hulk.iniciarAnimacao();
-        //goleiro.iniciarAnimacao();
+        goleiro.iniciarAnimacao();
         
         WindowRender window = new WindowRender(this, this);
         window.setVisible(true);
