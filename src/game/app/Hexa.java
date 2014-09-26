@@ -10,24 +10,16 @@ import engine.core.Game;
 import engine.core.GameController;
 import engine.eventos.EventosDoRender;
 import engine.eventos.EventosDoTeclado;
-import engine.itens.Posicao;
 import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
-import game.controladores.Jogadores;
 import game.itens.Goleiro;
-import game.itens.Hulk;
-import game.itens.Jogador;
-import java.util.Collection;
 
 /**
  *
- * @author alunoruy
+ * @author elane
  */
-public class Hexa implements EventosDoTeclado, EventosDoRender {
-
-    public static final int MAX_PLAYERS = 4;
+public class Hexa implements EventosDoTeclado,EventosDoRender{
     private static Hexa instance;
-    private Hulk hulk;
     private Goleiro goleiro;
     private Jogador jogador;
     public Collection<Posicao> posicao;
@@ -59,7 +51,6 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
         
         WindowRender window = new WindowRender(this, this);
         window.setVisible(true);
-        
         Game.gameInit();
         
         Thread th_jogadores = new Thread(new Runnable() {
@@ -83,6 +74,13 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
         return jogadores;
     }
     
+    public static Hexa getInstance(){
+        if(instance==null){
+            instance = new Hexa();
+        }
+        return instance;
+    }
+       
     @Override
     public void teclaPress(int keycode) {
         
@@ -90,22 +88,22 @@ public class Hexa implements EventosDoTeclado, EventosDoRender {
 
     @Override
     public void teclaDireita() {
-        goleiro.toRight();
+        goleiro.direita();
     }
 
     @Override
     public void teclaEsquerda() {
-        goleiro.toLeft();
+        goleiro.esquerda();
     }
 
     @Override
     public void teclaCima() {
-        
+        goleiro.cima();
     }
 
     @Override
     public void teclaBaixo() {
-        
+        goleiro.baixo();
     }
 
     @Override
