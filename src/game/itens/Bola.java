@@ -7,13 +7,20 @@
 package game.itens;
 
 import engine.itens.Item;
+import engine.itens.PosicaoRender;
 
 /**
  *
  * @author alunoruy
  */
 public class Bola extends Item {
-    public Bola() {
-        super("bola.gif");
+
+    public Bola(String img, PosicaoRender positions, int pos) {
+        super("Bola.gif", positions, 4);
     }
+    
+   @Override
+   public void animar(){
+       this.deslocarReta(105, 0);
+   }
 }

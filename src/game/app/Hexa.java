@@ -38,7 +38,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
         window.setVisible(true);
         Game.gameInit();
     }
-    
+       
     public static Hexa getInstance(){
         if(instance==null){
             instance = new Hexa();
