@@ -7,13 +7,14 @@
 package game.itens;
 
 import engine.itens.Item;
+import engine.itens.PosicaoRender;
 
 /**
  *
  * @author alunoruy
  */
 public class Hulk extends Item {
-    public Hulk() {
-        super("hulk.gif",100,100);
+    public Hulk(PosicaoRender pr, int p) {
+        super("hulk.gif",pr,p);
     }
 }
