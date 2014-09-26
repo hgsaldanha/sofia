@@ -65,10 +65,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
             public void run() {
                 try {
                     while (!GameController.getInstance().fimjogo) {
-                        int pos_inicial = new Random().nextInt(15);
-                        if (pos_inicial < 5)
-                            pos_inicial += 5;
-                        getJogadores().novoJogador(pos_inicial);
+                        getJogadores().novoJogador(new Random().nextInt(5)+15);
                         Thread.sleep(3000);
                     }
                 } catch (InterruptedException ex) {
