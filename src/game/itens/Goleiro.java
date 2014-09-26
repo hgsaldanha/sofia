@@ -6,6 +6,7 @@
 
 package game.itens;
 
+import engine.core.GameController;
 import engine.itens.Item;
 import engine.itens.PosicaoRender;
 
@@ -29,6 +30,7 @@ public class Goleiro extends Item{
        this.addImagem(IMAGEM_GOLEIRO_ESQUERDA, "goleiro.gif");
        this.addImagem(IMAGEM_GOLEIRO_PARADO, "parado.gif");
        this.addImagem(IMAGEM_COMEMORACAO, "comemoracao.gif");
+       
     }
    
     public Goleiro(String imagem, PosicaoRender positions) {
@@ -38,26 +40,7 @@ public class Goleiro extends Item{
     @Override
    public void animar()
    {
-        //Verifica se houve colisão com a bola
-            if(GameController.getInstance().colisaoItem(Bola.class, this)){
-               Item bola = GameController.getInstance().getColisaoItem(Bola.class, this);
-               bola.setVisible(true);
-               this.addBolas(1);
-              //A medida que o usuário realiza defesas, a velocidade da bola aumenta
-               if (qtdeBolas > 7){
-                   //Ganha partida
-               }
-               else{
-                   
-               }
-            }
-            else
-            {
-            //Verificar se foi bola dentro do gol
-            }
-            
-
-            pausar(50);
+        
    }
      
     public void addBolas(int p){

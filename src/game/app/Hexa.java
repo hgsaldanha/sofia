@@ -14,6 +14,7 @@ import engine.itens.Posicao;
 import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
 import game.controladores.Jogadores;
+import game.itens.Bola;
 import game.itens.Goleiro;
 import game.itens.Jogador;
 import java.util.Collection;
@@ -29,6 +30,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     public Collection<Posicao> posicao;
     public PosicaoRender mapa;
     private Jogadores jogadores;
+    private Bola bola;
     
     public Hexa() {
         
@@ -58,6 +60,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
         Game.gameInit();
         
         Thread th_jogadores = new Thread(new Runnable() {
+            
             @Override
             public void run() {
                 try {
@@ -72,12 +75,13 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
         });
         
         th_jogadores.start();
+        
     }
 
     public Jogadores getJogadores() {
         return jogadores;
     }
-
+    
     @Override
     public void teclaPress(int keycode) {
         
