@@ -14,9 +14,11 @@ import engine.itens.Posicao;
 import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
 import game.controladores.Jogadores;
+import game.itens.Bola;
 import game.itens.Goleiro;
 import game.itens.Jogador;
 import java.util.Collection;
+import java.util.Random;
 
 /**
  *
@@ -26,6 +28,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     private static Hexa instance;
     private Goleiro goleiro;
     private Jogador jogador;
+    private Bola bola;
     public Collection<Posicao> posicao;
     public PosicaoRender mapa;
     private Jogadores jogadores;
@@ -33,10 +36,10 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     public Hexa() {
         
         Game.ALTURA_TELA = 800;
-        Game.LARGURA_TELA = 1400;
+        Game.LARGURA_TELA = 750;
         
-        mapa = new PosicaoRender(20, 20, 50);
-        
+        mapa = new PosicaoRender(16, 15, 50);
+        //ulima linha = 226 a 240
         jogadores = new Jogadores(mapa);
         
         //hulk = new Hulk(mapa,25);
@@ -62,7 +65,10 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
             public void run() {
                 try {
                     while (!GameController.getInstance().fimjogo) {
-                        getJogadores().novoJogador();
+                        int pos_inicial = new Random().nextInt(15);
+                        if (pos_inicial < 5)
+                            pos_inicial += 5;
+                        getJogadores().novoJogador(pos_inicial);
                         Thread.sleep(3000);
                     }
                 } catch (InterruptedException ex) {
