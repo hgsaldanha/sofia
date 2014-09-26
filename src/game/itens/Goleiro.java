@@ -6,12 +6,8 @@
 
 package game.itens;
 
-import engine.core.GameController;
 import engine.itens.Item;
 import engine.itens.PosicaoRender;
-import game.info.Posicao;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

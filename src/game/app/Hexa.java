@@ -10,9 +10,13 @@ import engine.core.Game;
 import engine.core.GameController;
 import engine.eventos.EventosDoRender;
 import engine.eventos.EventosDoTeclado;
+import engine.itens.Posicao;
 import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
+import game.controladores.Jogadores;
 import game.itens.Goleiro;
+import game.itens.Jogador;
+import java.util.Collection;
 
 /**
  *
@@ -74,12 +78,6 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
         return jogadores;
     }
     
-    public static Hexa getInstance(){
-        if(instance==null){
-            instance = new Hexa();
-        }
-        return instance;
-    }
        
     @Override
     public void teclaPress(int keycode) {
