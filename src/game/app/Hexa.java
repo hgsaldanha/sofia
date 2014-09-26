@@ -14,7 +14,6 @@ import engine.itens.Posicao;
 import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
 import game.controladores.Jogadores;
-import game.itens.Bola;
 import game.itens.Goleiro;
 import game.itens.Jogador;
 import java.util.Collection;
@@ -28,7 +27,6 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     private static Hexa instance;
     private Goleiro goleiro;
     private Jogador jogador;
-    private Bola bola;
     public Collection<Posicao> posicao;
     public PosicaoRender mapa;
     private Jogadores jogadores;
