@@ -15,7 +15,6 @@ import engine.itens.PosicaoRender;
 import engine.renders.WindowRender;
 import game.controladores.Jogadores;
 import game.itens.Goleiro;
-import game.itens.Jogador;
 import java.util.Collection;
 import java.util.Random;
 
@@ -26,23 +25,25 @@ import java.util.Random;
 public class Hexa implements EventosDoTeclado,EventosDoRender{
     private static Hexa instance;
     private Goleiro goleiro;
-    private Jogador jogador;
     public Collection<Posicao> posicao;
     public PosicaoRender mapa;
     private Jogadores jogadores;
+    private int velocidadeJogador = 10;
+    private int velocidadeBola = 10;
+    private int velocidadeGoleiro = 10;
     //private Bola bola;
+
     
     public Hexa() {
         
-        Game.ALTURA_TELA = 800;
+        Game.ALTURA_TELA = 700;
         Game.LARGURA_TELA = 750;
         
-        mapa = new PosicaoRender(16, 15, 50);
-        //ulima linha = 226 a 240
-        jogadores = new Jogadores(mapa);
+        //mapa = new PosicaoRender(16, 15, 50);
+        jogadores = new Jogadores();
         
         //hulk = new Hulk(mapa,25);
-        goleiro = new Goleiro(mapa);
+        goleiro = new Goleiro(Game.LARGURA_TELA/2,Game.ALTURA_TELA-90);
     }
     
     public static Hexa getInstance() {
@@ -65,7 +66,7 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
             public void run() {
                 try {
                     while (!GameController.getInstance().fimjogo) {
-                        getJogadores().novoJogador(new Random().nextInt(5)+15);
+                        getJogadores().novoJogador(new Random().nextInt(Game.LARGURA_TELA/2)+Game.LARGURA_TELA/4);
                         Thread.sleep(3000);
                     }
                 } catch (InterruptedException ex) {
@@ -121,5 +122,30 @@ public class Hexa implements EventosDoTeclado,EventosDoRender{
     public void depoisPintar() {
         
     }
+    
+    public int getVelocidadeBola() {
+        return velocidadeBola;
+    }
+
+    public void setVelocidadeBola(int velocidadeBola) {
+        this.velocidadeBola += velocidadeBola;
+    }
+
+    public int getVelocidadeJogador() {
+        return velocidadeJogador;
+    }
+
+    public void setVelocidadeJogador(int velocidade) {
+        this.velocidadeJogador = velocidade;
+    }
+
+    public int getVelocidadeGoleiro() {
+        return velocidadeGoleiro;
+    }
+
+    public void setVelocidadeGoleiro(int velocidadeGoleiro) {
+        this.velocidadeGoleiro = velocidadeGoleiro;
+    }
+    
     
 }

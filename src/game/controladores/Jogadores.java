@@ -6,10 +6,7 @@
 
 package game.controladores;
 
-import engine.itens.PosicaoRender;
-import game.itens.Bola;
 import game.itens.Jogador;
-import java.util.Random;
 
 /**
  *
@@ -18,18 +15,13 @@ import java.util.Random;
 public class Jogadores {
     private final int MAX_JOGADORES = 3;
     private int qtd_jogadores = 0;
-    private PosicaoRender pr;
     
-    public Jogadores(PosicaoRender pr) {
-        this.pr = pr;
-    }
-    
-    public synchronized void novoJogador(int pos_inicial) {
-        if (qtd_jogadores < MAX_JOGADORES) {
+    public synchronized void novoJogador(int x) {
+        if (qtd_jogadores <= MAX_JOGADORES) {
             atualizaContagem(1);
-            new Jogador(pr, pos_inicial);
+            //new Jogador(pr, pos_inicial);
+            new Jogador(x, -50);
         }
-        //System.out.println(qtd_jogadores);
     }
     
     public synchronized void atualizaContagem(int i) {

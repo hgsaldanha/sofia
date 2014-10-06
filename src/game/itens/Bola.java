@@ -6,41 +6,40 @@
 
 package game.itens;
 
+import engine.core.Game;
 import engine.itens.Item;
-import engine.itens.PosicaoRender;
+import game.app.Hexa;
+import java.util.Random;
 
 /**
  *
  * @author alunoruy
  */
 public class Bola extends Item {
-    public Bola(PosicaoRender pr, int p) {
-        super("bola.gif",pr, p);
-        
+    private Jogador jogador;
+
+    private Jogador getJogador() {
+        return jogador;
+    }
+
+    public void setJogador(Jogador jogador) {
+        this.jogador = jogador;
+    }
+    public Bola(int x, int y) {
+        super("bola.gif", x, y);
         setDeslocamento(1);
-        iniciarAnimacao();
     }
     
     @Override
     public void animar() {
-        while(posicao_atual < 226){ //Enquanto o jogo não chegou ao fim
-            //System.out.println(posicao_atual);
+        moverPara(new Random().nextInt(Game.LARGURA_TELA), Game.ALTURA_TELA, Hexa.getInstance().getVelocidadeBola());
+        while(getY() < Game.ALTURA_TELA){
+            pausar(100);
         }
+        getJogador().setVisible(false);
         setVisible(false);
-            
-            //Hexa.getInstance().getJogadores().atualizaContagem(-1); //1 jogador a menos
-            
-            //Verifica se houve colisão com o inimigo
-            /*if(GameController.getInstance().colisaoItem(Inimigo.class, this)){
-                GameController.getInstance().setFimJogo(true);//Informa o fim do jogo
-                GameController.getInstance().addItem(new ImagemItem("game-over.jpg"));
-                setVisible(false);//Apaga a nave
-            }
-            
 
-            //pausar(50);
-        }*/
-        
+        Hexa.getInstance().getJogadores().atualizaContagem(-1); //1 jogador a menos
     }
    
 }

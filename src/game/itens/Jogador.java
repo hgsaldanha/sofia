@@ -6,11 +6,9 @@
 
 package game.itens;
 
-import engine.core.GameController;
 import engine.itens.Item;
 import engine.itens.PosicaoRender;
 import game.app.Hexa;
-import java.util.Random;
 
 
 /**
@@ -21,6 +19,12 @@ public class Jogador extends Item{
     private int DIRECAO;
     private final int INTERVALO = 100;
     PosicaoRender pr;
+    
+    public Jogador(int x, int y) {
+        super("goleiro.gif", x, y);
+        setDeslocamento(1);
+        iniciarAnimacao();
+    }
     
     public Jogador(PosicaoRender pr, int p) {
        super("goleiro.gif",pr,p);
@@ -33,23 +37,15 @@ public class Jogador extends Item{
 
     @Override
     public void animar() {
-        if(!GameController.getInstance().isFimJogo() || getY() < 600){ //Enquanto o jogo não chegou ao fim
-            
-            while (getY() < 350 && isVisible()) {//Enquanto estiver visivel e não ter chegado em baixo
-                downInMapa(1,15);
-            }
-            
-            chutar(new Bola(pr,posicao_atual+15));
-            pausar(3000);
-            
-            setVisible(false); //Fim do inimigo
-            
-            Hexa.getInstance().getJogadores().atualizaContagem(-1); //1 jogador a menos
+        moverPara(getX(), 355, Hexa.getInstance().getVelocidadeJogador());
+        while (getY() < 350) {
+            pausar(100);
         }
+        chutar(new Bola(getX(),getY()));
     }
     
     public void chutar(Bola b) {
-        int direcao = new Random().nextInt(15)+226;
-        b.deslocarReta(direcao, 10);
+        b.setJogador(this);
+        b.iniciarAnimacao();
     }
 }
