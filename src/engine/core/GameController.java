@@ -1,6 +1,7 @@
 package engine.core;
 
 import engine.itens.Item;
+import engine.itens.Obstaculo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -82,6 +83,22 @@ public class GameController {
         int obj2W = obj2.getWidth();
         int obj2H = obj2.getHeight();
         
+//        if ((obj1X >= obj2X && obj1X <= obj2X + obj2W)
+//                && (obj1Y >= obj2Y && obj1Y <= obj2Y + obj2H)) {
+//            return true;
+//        } else if ((obj1X + obj1W >= obj2X && obj1X + obj1W <= obj2X + obj2W)
+//                && (obj1Y >= obj2Y && obj1Y <= obj2Y + obj2H)) {
+//            return true;
+//        } else if ((obj1X >= obj2X && obj1X <= obj2X + obj2W)
+//                && (obj1Y + obj1H >= obj2Y && obj1Y + obj1H <= obj2Y + obj2H)) {
+//            return true;
+//        } else if ((obj1X + obj1W >= obj2X && obj1X + obj1W <= obj2X + obj2W)
+//                && (obj1Y + obj1H >= obj2Y && obj1Y + obj1H <= obj2Y + obj2H)) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+        
         if ((obj1X >= obj2X && obj1X <= obj2X + obj2W)
                 && (obj1Y >= obj2Y && obj1Y <= obj2Y + obj2H)) {
             return true;
@@ -94,9 +111,21 @@ public class GameController {
         } else if ((obj1X + obj1W >= obj2X && obj1X + obj1W <= obj2X + obj2W)
                 && (obj1Y + obj1H >= obj2Y && obj1Y + obj1H <= obj2Y + obj2H)) {
             return true;
-        } else {
-            return false;
+        } else if ((obj2X >= obj1X && obj2X <= obj1X + obj1W)
+                && (obj2Y >= obj1Y && obj2Y <= obj1Y + obj1H)) {
+            return true;
+        } else if ((obj2X + obj2W >= obj1X && obj2X + obj2W <= obj1X + obj1W)
+                && (obj2Y >= obj1Y && obj2Y <= obj1Y + obj1H)) {
+            return true;
+        } else if ((obj2X >= obj1X && obj2X <= obj1X + obj1W)
+                && (obj2Y + obj2H >= obj1Y && obj2Y + obj2H <= obj1Y + obj1H)) {
+            return true;
+        } else if ((obj2X + obj2W >= obj1X && obj2X + obj2W <= obj1X + obj1W)
+                && (obj2Y + obj2H >= obj1Y && obj2Y + obj2H <= obj1Y + obj1H)) {
+            return true;
         }
+        return false;
+        
     }
     
     public synchronized boolean colisaoItem(Class<?> c, Item i) {
@@ -107,24 +136,33 @@ public class GameController {
                 //if ((i.getX() >= inimigo.getX()) && (i.getX() < inimigo.getX() + inimigo.getWidth())
                   //      && (i.getY() >= inimigo.getY() - inimigo.getHeight()) && (i.getY() < inimigo.getY())) {
                 if(colisao(i, item)){ //Testa se houve colisão
-                    item.setVisible(false); //Se tiver colisão torna o inimigo invisivel
+                    //item.setVisible(false); //Se tiver colisão torna o inimigo invisivel
                     return true;
                 }
             }
         }
         return false;
     }
+    
+    //Verifica a colisão com o inimigo
+    public synchronized Item getColisaoItem(Item i) {
+
+        for (Item item : getItens()) {
+            if (item instanceof Obstaculo) { //Se o item for um inimigo
+                if(colisao(i, item)){ //Testa se houve colisão
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
 
     //Verifica a colisão com o inimigo
     public synchronized Item getColisaoItem(Class<?> c, Item i) {
 
         for (Item item : getItens()) {
-            
             if (item.getClass()==c) { //Se o item for um inimigo
-                //if ((i.getX() >= inimigo.getX()) && (i.getX() < inimigo.getX() + inimigo.getWidth())
-                  //      && (i.getY() >= inimigo.getY() - inimigo.getHeight()) && (i.getY() < inimigo.getY())) {
                 if(colisao(i, item)){ //Testa se houve colisão
-                    //item.setVisible(false); //Se tiver colisão torna o inimigo invisivel
                     return item;
                 }
             }
